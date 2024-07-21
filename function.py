@@ -85,7 +85,10 @@ def team_analysis(team_name):
     matches_won = matches[matches['winner'] == team_name].shape[0]
 
     # Win percentage
-    win_percentage = (matches_won // matches_played) * 100
+    if matches_played > 0:
+        win_percentage = round((matches_won / matches_played) * 100)
+    else:
+        win_percentage = 0
 
     # Average runs scored per match
     total_runs_scored = delivery[delivery['batting_team'] == team_name]['total_runs'].sum()
@@ -109,8 +112,8 @@ def t2t(team1,team2):
     team2_wins = head_to_head_matches[head_to_head_matches['winner'] == team2].shape[0]
 
     # Win percentage for each team
-    team1_win_percentage = (team1_wins // total_h2h_matches) * 100
-    team2_win_percentage = (team2_wins // total_h2h_matches) * 100
+    team1_win_percentage = round((team1_wins / total_h2h_matches) * 100)
+    team2_win_percentage = round((team2_wins / total_h2h_matches) * 100)
 
     # Average scores of each team
     team1_average_score = delivery[(delivery['batting_team'] == team1) & (delivery['bowling_team'] == team2)].groupby('match_id')[
@@ -118,7 +121,7 @@ def t2t(team1,team2):
     team2_average_score = delivery[(delivery['batting_team'] == team2) & (delivery['bowling_team'] == team1)].groupby('match_id')[
         'total_runs'].sum().mean()
 
-    return total_h2h_matches, team1_win_percentage, team2_win_percentage , team1_average_score, team2_average_score
+    return total_h2h_matches, team1_win_percentage, team2_win_percentage , round(team1_average_score), round(team2_average_score)
 
 # Function to get team statistics
 def get_team_statistics(team_name):
@@ -132,7 +135,7 @@ def get_team_statistics(team_name):
     matches_won = team_matches[team_matches['winner'] == team_name].shape[0]
 
     # Win percentage
-    win_percentage = (matches_won // matches_played) * 100 if matches_played > 0 else 0
+    win_percentage = (matches_won / matches_played) * 100 if matches_played > 0 else 0
 
     # Total runs scored by the team
     total_runs_scored = delivery[delivery['batting_team'] == team_name]['total_runs'].sum()
@@ -192,14 +195,14 @@ def compare_teams(team1_name, team2_name):
     team2_wins = team2_matches[team2_matches['winner'] == team2_name].shape[0]
 
     # Win percentage for each team
-    team1_win_percentage = (team1_wins // total_matches) * 100 if total_matches > 0 else 0
-    team2_win_percentage = (team2_wins // total_matches) * 100 if total_matches > 0 else 0
+    team1_win_percentage = round((team1_wins / total_matches) * 100) if total_matches > 0 else 0
+    team2_win_percentage = round((team2_wins / total_matches) * 100) if total_matches > 0 else 0
 
     # Average scores of each team against the other
-    team1_average_score = delivery[(delivery['batting_team'] == team1_name) & (delivery['bowling_team'] == team2_name)].groupby('match_id')[
-        'total_runs'].sum().mean()
-    team2_average_score = delivery[(delivery['batting_team'] == team2_name) & (delivery['bowling_team'] == team1_name)].groupby('match_id')[
-        'total_runs'].sum().mean()
+    team1_average_score = round(delivery[(delivery['batting_team'] == team1_name) & (delivery['bowling_team'] == team2_name)].groupby('match_id')[
+        'total_runs'].sum().mean())
+    team2_average_score = round(delivery[(delivery['batting_team'] == team2_name) & (delivery['bowling_team'] == team1_name)].groupby('match_id')[
+        'total_runs'].sum().mean())
 
     # Summary DataFrame
     summary_df = pd.DataFrame({
