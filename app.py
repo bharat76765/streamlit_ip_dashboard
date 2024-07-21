@@ -53,7 +53,7 @@ if options == "Team Analysis":
             col44,col55=st.columns(2)
 
             col11.metric("Total Matches Played",total_h2h_matches)
-            col22.metric("{team1} Win Percentage",team1_win_percentage)
+            col22.metric(f"{team1} Win Percentage",team1_win_percentage)
             col33.metric(f"{team2} Win Percentage",team2_win_percentage)
             col44.metric(f"{team1} Average Score against {team2}", team1_average_score)
             col55.metric(f"{team2} Average Score against {team1}",team2_average_score)
