@@ -7,11 +7,14 @@ The IPL Analysis Dashboard is a data analysis and visualization tool built using
 
 - **Team Analysis:**
   - Individual Team Analysis: Analyze statistics for a specific IPL team including matches played, matches won, win percentage, average runs per match, and highest team total. View detailed match-by-match statistics.
+![Screenshot 2024-07-21 092638](https://github.com/user-attachments/assets/2494d0f4-658b-4e5d-888c-8f2d60e44f22)
   - Team vs Team Analysis: Compare two IPL teams based on total matches played, win percentage, and average scores against each other.
-
+![Screenshot 2024-07-21 095518](https://github.com/user-attachments/assets/7fda4266-c0fc-41d0-a8bf-c01413333b81)
 - **Player Analysis:**
   - Batting Analysis: Analyze batting performance for a selected player including total runs scored, average runs per match, strike rate, number of fifties and hundreds scored. View detailed match-wise batting performance.
   - Bowling Analysis: Analyze bowling performance for a selected player including total wickets taken, average runs conceded per wicket, and economy rate. View detailed match-wise bowling statistics.
+![Screenshot 2024-07-21 094706](https://github.com/user-attachments/assets/c5c1ed72-10bd-4a8a-9bc4-00abf79bcade)
+
 
 ## Installation
 
